@@ -1,0 +1,62 @@
+<?php
+/**
+ * Illia Neiman
+ *
+ * NOTICE OF LICENSE
+ *
+ * According to LICENCE file you are not allowed to copy, use or recreate this file in any ways.
+ * Specially for eCommerce usage.
+ *
+ * @category Ineiman
+ * @package CustomerNickname
+ * @copyright Copyright (c) 2021-current Ineiman (https://github.com/illyaneiman)
+ * @email kg.illya.ney@gmail.com
+ */
+?>
+<?php
+/**
+ * Create account form template
+ *
+ * @see \Magento\CustomerCustomAttributes\Block\Form
+ */
+/* @var $block \Magento\CustomerCustomAttributes\Block\Form */
+?>
+<?php if ($block->hasUserDefinedAttributes()): ?>
+    <?php if ($block->isShowContainer()): ?>
+        <fieldset class="fieldset">
+    <?php endif;?>
+    <?php $userAttributes = $block->getUserDefinedAttributes(); ?>
+    <?php $entity = $block->getEntity(); ?>
+    <?php foreach ($userAttributes as $attribute): ?>
+        <?php $attributeContent = $block->getAttributeHtml($attribute);?>
+        <?php if ($attributeContent): ?>
+            <?= /* @noEscape */ $attributeContent ?>
+            <?php if ($attribute->getAttributeCode() === 'customer_nickname'): ?>
+                <script type="text/x-magento-init">
+                    {
+                        "#customer_nickname": {
+                            "checkNicknameAvailability" : {
+                                "id": "#customer_nickname",
+                                "validateUrl": "<?= /* @noEscape */ $block->getUrl('customer/nickname/validate'); ?>",
+                                "attributeCode": "<?= /* @noEscape */ $attribute->getAttributeCode(); ?>"
+                            }
+                        }
+                    }
+                </script>
+            <?php endif; ?>
+        <?php endif;?>
+    <?php endforeach;?>
+    <?php if ($block->isShowContainer()): ?>
+        </fieldset>
+    <?php endif;?>
+    <script type="text/x-magento-init">
+        {
+            "*": {
+                "Magento_Ui/js/core/app": {
+                    "components": <?= /* @noEscape */ $block->getViewModel()
+                                        ->getJsComponentsDefinitions($userAttributes, $entity); ?>
+                }
+            }
+        }
+    </script>
+<?php endif; ?>

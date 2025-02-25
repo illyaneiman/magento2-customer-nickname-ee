@@ -1,0 +1,34 @@
+{
+    "name": "ineiman/module-customer-nickname",
+    "description": "Illia Neiman Customer Nickname Module",
+    "type": "magento2-module",
+    "version": "2.4.6.0",
+    "authors": [
+        {
+            "name": "Illia Neiman",
+            "homepage": "http://local.test"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "git@github.com:illyaneiman/magento2-customer-nickname-ee.git"
+        }
+    ],
+    "require": {
+        "ineiman/base": "*",
+        "magento/module-banner": "*",
+        "magento/module-catalog-widget": "*"
+    },
+    "config": {
+        "preferred-install": "dist"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Ineiman\\CustomerNickname\\": ""
+        }
+    }
+}
