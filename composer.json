@@ -16,9 +16,8 @@
         }
     ],
     "require": {
-        "ineiman/base": "*",
-        "magento/module-banner": "*",
-        "magento/module-catalog-widget": "*"
+        "magento/module-eav": "*",
+        "magento/module-customer": "*"
     },
     "config": {
         "preferred-install": "dist"
